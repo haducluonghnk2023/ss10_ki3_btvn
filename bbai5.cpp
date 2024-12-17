@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Ð?nh nghia c?u trúc Node
 struct Node {
     int data;
     struct Node *left;
     struct Node *right;
 };
 
-// Hàm t?o m?t node m?i
 struct Node* newNode(int data) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
     node->data = data;
@@ -16,25 +14,20 @@ struct Node* newNode(int data) {
     return node;
 }
 
-// Hàm thêm node vào cây nh? phân
 struct Node* insert(struct Node* node, int data) {
-    // N?u cây r?ng, tr? v? node m?i
     if (node == NULL) {
         return newNode(data);
     }
 
-    // Ngu?c l?i, d? quy xu?ng cây con trái ho?c ph?i
     if (data < node->data) {
         node->left = insert(node->left, data);
     } else if (data > node->data) {
         node->right = insert(node->right, data);
     }
 
-    // Tr? v? node chua du?c thay d?i
     return node;
 }
 
-// Hàm duy?t cây theo th? t? tru?c (PreOrder)
 void preOrder(struct Node* root) {
     if (root != NULL) {
         printf("%d ", root->data);
@@ -43,7 +36,6 @@ void preOrder(struct Node* root) {
     }
 }
 
-// Hàm duy?t cây theo th? t? gi?a (InOrder)
 void inOrder(struct Node* root) {
     if (root != NULL) {
         inOrder(root->left);
@@ -52,7 +44,6 @@ void inOrder(struct Node* root) {
     }
 }
 
-// Hàm duy?t cây theo th? t? sau (PostOrder)
 void postOrder(struct Node* root) {
     if (root != NULL) {
         postOrder(root->left);
@@ -61,7 +52,6 @@ void postOrder(struct Node* root) {
     }
 }
 
-// Hàm tìm ki?m m?t ph?n t? trong cây
 struct Node* search(struct Node* root, int key) {
     if (root == NULL || root->data == key) {
         return root;
